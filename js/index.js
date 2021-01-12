@@ -76,7 +76,7 @@ function calcularTotalNumber(array) {
   for (i = 0; i < array.length; i++) {
     total += array[i];
   }
-  resposta.innerHTML = `${total}`;
+  resposta.innerHTML = `Olá amigo sua resposta e : ${total}`;
 
   return array;
 }
