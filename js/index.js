@@ -1,4 +1,5 @@
 document.getElementById("calcular").addEventListener("click", calculadora);
+let resposta = document.getElementById("res");
 
 function calculadora(event) {
   event.preventDefault();
@@ -7,63 +8,75 @@ function calculadora(event) {
   let sinalAritmetico = document.getElementById("sinal").value;
   sinalAritmetico = sinalAritmetico.split(" ");
 
-  validarInput(isNumero, isNumeroOne, sinalAritmetico);
+  validarInput(isNumero, isNumeroOne);
   operacoes(isNumero, isNumeroOne, sinalAritmetico);
 }
 
+//validarMeusInputs
 function validarInput(isNumero, isNumeroOne) {
   if (isNumero == " " || isNumeroOne == " ") {
     alert("preenchar os campos");
   }
 }
 
+//verificarMinhasOperaçoes
 function operacoes(valor1, valor2, sinal) {
-  let resposta = document.getElementById("res");
-
   for (i = 0; i < sinal.length; i++) {
     if (sinal[i] === "+") {
-      somar(valor1, valor2, resposta);
+      somar(valor1, valor2);
     } else if (sinal[i] === "-") {
-      subtrair(valor1, valor2, resposta);
+      subtrair(valor1, valor2);
     } else if (sinal[i] === "x") {
-      multiplicar(valor1, valor2, resposta);
+      multiplicar(valor1, valor2);
     } else if (sinal[i] === "÷") {
-      divisao(valor1, valor2, resposta);
+      divisao(valor1, valor2);
     } else {
-      resposta.innerHTML = "Ops Operadodor não existente";
+      resposta.innerHTML = "Ops Operadodor não existente !!!";
     }
   }
 
   document.getElementById("form").reset();
 }
 
-function somar(valor1, valor2, resposta) {
+//calculosAritmeticos
+function somar(valor1, valor2) {
   let somarNumbers = valor1 + valor2;
   arrayNumbers.push(somarNumbers);
-  calcularTotalNumber(arrayNumbers, resposta);
+  calcularTotalNumber(arrayNumbers);
+
+  return valor1, valor2;
 }
-function subtrair(valor1, valor2, resposta) {
+function subtrair(valor1, valor2) {
   let subtrairNumbers = valor1 - valor2;
   arrayNumbers.push(subtrairNumbers);
-  calcularTotalNumber(arrayNumbers, resposta);
+  calcularTotalNumber(arrayNumbers);
+
+  return valor1, valor2;
 }
-function multiplicar(valor1, valor2, resposta) {
+function multiplicar(valor1, valor2) {
   let multiplicarNumbers = valor1 * valor2;
   arrayNumbers.push(multiplicarNumbers);
-  calcularTotalNumber(arrayNumbers, resposta);
+  calcularTotalNumber(arrayNumbers);
+
+  return valor1, valor2;
 }
-function divisao(valor1, valor2, resposta) {
+function divisao(valor1, valor2) {
   let divisaoNumbers = valor1 / valor2;
   arrayNumbers.push(divisaoNumbers);
-  calcularTotalNumber(arrayNumbers, resposta);
+  calcularTotalNumber(arrayNumbers);
+
+  return valor1, valor2;
 }
 
 let arrayNumbers = [];
 
-function calcularTotalNumber(array, resposta) {
+//calcularTotaldeNumbers
+function calcularTotalNumber(array) {
   let total = 0;
   for (i = 0; i < array.length; i++) {
     total += array[i];
   }
   resposta.innerHTML = `${total}`;
+
+  return array;
 }
